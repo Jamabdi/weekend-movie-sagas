@@ -11,13 +11,18 @@ function MovieList() {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
 
+  const displayMovie = (movieToDisplay) => {
+  dispatch({type:'MOVIE_DETAILS', payload: movieToDisplay})
+  };
+
+
   return (
     <main>
       <h1>MovieList</h1>
       <section className="movies">
         {movies.map(movie => {
           return (
-            <div data-testid='movieItem' key={movie.id}>
+            <div onClick={(event)=> displayMovie(movie)} data-testid='movieItem' key={movie.id}>
               <h3>{movie.title}</h3>
               <img src={movie.poster} alt={movie.title}/>
             </div>
